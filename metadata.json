@@ -1,0 +1,6 @@
+{
+  "name": "AccessiLearn Wasm",
+  "description": "Accessible mobile-friendly e-learning platform featuring C-to-WebAssembly quiz processing, live WCAG 2.2 DOM auditing, AI-driven personalization, and JS vs Wasm benchmarking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

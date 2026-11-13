@@ -1,0 +1,124 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-sans: "DM Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --a11y-font-scale: 1;
+    --bg-canvas: #f8fafc;
+    --bg-surface: #ffffff;
+    --border-hairline: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+  }
+
+  .dark {
+    --bg-canvas: #090d16;
+    --bg-surface: #111827;
+    --border-hairline: #1f2937;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+  }
+
+  html {
+    font-size: calc(16px * var(--a11y-font-scale));
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Accessibility Mode Enhancements */
+html.a11y-spacing body {
+  letter-spacing: 0.03em;
+  word-spacing: 0.1em;
+  line-height: 1.75;
+}
+
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Visible Focus Indicators (WCAG 2.4.7 / 2.4.11) */
+:focus-visible {
+  outline: 2px solid #1d4ed8;
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+html.a11y-focus-enhanced :focus-visible {
+  outline: 3px solid #1d4ed8;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(29, 78, 216, 0.2);
+}
+
+html.dark.a11y-focus-enhanced :focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.25);
+}
+
+/* High Contrast Adjustments (WCAG AAA 7:1+ alignment) */
+html.a11y-high-contrast:not(.dark) body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+html.a11y-high-contrast.dark body {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: 16px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
